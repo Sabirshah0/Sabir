@@ -1,0 +1,46 @@
+:root{
+  --beat-speed: 1s;
+  --heart-color: #2d6a9c;
+}
+*{box-sizing:border-box}
+body{
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: linear-gradient(180deg,#111827 0%, #0b1220 100%);
+  color:#fff;
+  height:100vh;
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.container{width:100%;max-width:820px;padding:24px}
+h1{text-align:center;margin:8px 0 18px}
+.controls{display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:18px}
+.controls label{font-size:14px;color:#d1d5db;display:flex;gap:8px;align-items:center}
+.controls input[type=range]{width:160px}
+.stage{display:flex;align-items:center;justify-content:center;padding:24px}
+#heart{width:260px;height:auto;cursor:pointer;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6))}
+#heartPath{fill:var(--heart-color)}
+
+@keyframes beat {
+  0%{transform:scale(1)}
+  25%{transform:scale(0.92)}
+  50%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+.beat{transform-origin:center center;animation:beat var(--beat-speed) ease-in-out infinite}
+
+.small-heart{
+  position:fixed;
+  width:18px;height:18px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  transition:transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.small-heart svg path{fill:var(--heart-color)}
+
+.fade-up{opacity:0;transform:translateY(-80px) scale(1.4)}
+
+/* Responsive tweaks */
+@media (max-width:420px){
+  #heart{width:160px}
+}
